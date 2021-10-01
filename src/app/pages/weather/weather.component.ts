@@ -35,13 +35,13 @@ export class WeatherComponent implements OnInit {
           if (i <= 4) {
             this.forecastData.details.push({
               date: this.dateFormat(re.dt),
-              maxTemperature: this.fToC(re.temp.max),
-              morningTemp: this.fToC(re.temp.morn),
-              nightTemp: this.fToC(re.temp.night),
-              dayTemp: this.fToC(re.temp.day),
-              meanTemp: this.fToC(((re.temp.day + re.temp.eve + re.temp.max + re.temp.min + re.temp.morn + re.temp.night) / 6)),
-              mode: this.fToC(this.mode([re.temp.day, re.temp.eve, re.temp.max, re.temp.min, re.temp.morn, re.temp.night])[0]),
-              minTemperature: this.fToC(re.temp.min),
+              maxTemperature: this.kToC(re.temp.max),
+              morningTemp: this.kToC(re.temp.morn),
+              nightTemp: this.kToC(re.temp.night),
+              dayTemp: this.kToC(re.temp.day),
+              meanTemp: this.kToC(((re.temp.day + re.temp.eve + re.temp.max + re.temp.min + re.temp.morn + re.temp.night) / 6)),
+              mode: this.kToC(this.mode([re.temp.day, re.temp.eve, re.temp.max, re.temp.min, re.temp.morn, re.temp.night])[0]),
+              minTemperature: this.kToC(re.temp.min),
               humidity: re.humidity,
               description: re.weather[0].description,
               icon: res.daily[i].weather[0].icon,
@@ -53,10 +53,6 @@ export class WeatherComponent implements OnInit {
         console.log(error, 'asdasdasd');
       }
     )
-  }
-
-  fToC(fahrenheit: any) {
-    return (fahrenheit - 274.15).toFixed(2) + '\xB0C';
   }
 
   mode(numbers: any) {
@@ -84,6 +80,10 @@ export class WeatherComponent implements OnInit {
         }
       }
     return modes;
+  }
+
+  kToC(fahrenheit: any) {
+    return (fahrenheit - 274.15).toFixed(2) + '\xB0C';
   }
 
   loadCurrentWeather() {
