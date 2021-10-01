@@ -1,0 +1,67 @@
+<mat-sidenav-container class="ga-sidenav-container">
+    <mat-sidenav mode="side" opened="true" disableClose="true" #nav class="sidebar">
+        <form class="ga-margin-1-rem">
+            <mat-form-field class="ga-width-100-per">
+                <input matInput placeholder="Enter City Name"
+                       (keyup.enter)="loadCurrentWeather()"
+                       [(ngModel)]="city" [(ngModel)]='listFilter'
+                       [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </form>
+
+        <div class="ga-margin-1-rem">
+            <button mat-raised-button class="ga-width-100-per" [disabled]="!listFilter" color="primary"
+                    (click)="loadCurrentWeather()">
+                Search City
+            </button>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+        <img src="assets/menu.svg" (click)="nav.toggle()" style="cursor: pointer" alt="">
+        <span class="ga-display-inline-block">
+            <mat-card class="ga-forecast-card" *ngIf="showForecast">
+                <div>
+                    <h2> 5-day weather forecast in {{forecastData?.name}} </h2>
+                  </div>
+                  <mat-tab-group color="primary" *ngIf="forecastData">
+                    <ng-container *ngFor="let details of forecastData.details">
+                      <mat-tab label="{{details.date}}">
+                        <mat-list>
+                            <mat-list-item> <span class="bold">Morning Temperature :</span> {{details.morningTemp}}
+                              </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Day Temperature :</span> {{details.dayTemp}}
+                              </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Night Temperature :</span> {{details.nightTemp}}
+                              </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Minimum Temperature :</span> {{details.minTemperature}}
+                              </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Maximum Temperature :</span> {{details.maxTemperature}}
+                              </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Mean Temperature Value :</span> {{details.meanTemp}}
+                              </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Mode Temperature Value :</span> {{details.mode}}
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Humidity :</span> {{details.humidity}} </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item> <span class="bold">Description :</span> {{details.description}}<span>
+                                <img src="http://openweathermap.org/img/w/{{details.icon}}.png"
+                                     alt="Site Logo" width="50" height="50">
+                                </span> </mat-list-item>
+                           </mat-list>
+                   </mat-tab>
+                    </ng-container>
+                  </mat-tab-group>
+              </mat-card>
+    </span>
+        <h2 class="capitalize" *ngIf="noFound">{{noFound}}</h2>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

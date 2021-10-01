@@ -1,0 +1,34 @@
+.ga-sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  padding: 30px;
+}
+
+.ga-width-100-per {
+  margin-bottom: 20px;
+  width: 200px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.content-inner {
+  margin: 20px 0;
+}
+
+.bold {
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+::ng-deep .mat-tab-body-content {
+  overflow: hidden !important;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
